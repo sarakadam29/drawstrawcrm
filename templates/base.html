@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SupportDesk CRM{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bg-primary': '#0F0F0F',
+                        'bg-surface': '#1A1A1A',
+                        'border-subtle': '#2A2A2A',
+                        'text-primary': '#F5F5F5',
+                        'text-secondary': '#737373',
+                        'accent': '#5E6AD2',
+                        'accent-hover': '#4F5BBF',
+                        'status-open': '#22C55E',
+                        'status-progress': '#EAB308',
+                        'status-closed': '#6B7280'
+                    },
+                    fontFamily: {
+                        'sans': ['DM Sans', 'sans-serif'],
+                        'mono': ['DM Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0F0F0F;
+            color: #F5F5F5;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .ticket-id {
+            font-family: 'DM Mono', monospace;
+            letter-spacing: -0.02em;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2A2A2A;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3A3A3A;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #5E6AD2 !important;
+            box-shadow: 0 0 0 2px rgba(94, 106, 210, 0.2);
+        }
+        .btn-primary {
+            background-color: #5E6AD2;
+            transition: all 0.2s ease;
+        }
+        .btn-primary:hover {
+            background-color: #4F5BBF;
+        }
+        .table-row-hover:hover {
+            background-color: rgba(94, 106, 210, 0.05);
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="min-h-screen bg-bg-primary text-text-primary antialiased">
+    <!-- Navbar -->
+    <nav class="border-b border-border-subtle bg-bg-primary/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <a href="/" class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 bg-accent rounded-md flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <span class="font-semibold text-lg tracking-tight">SupportDesk</span>
+                    </a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="/" class="text-text-secondary hover:text-text-primary transition-colors text-sm font-medium">All Tickets</a>
+                    <a href="/tickets/new" class="btn-primary text-white px-4 py-2 rounded-md text-sm font-medium flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        New Ticket
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    <script src="/static/app.js"></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

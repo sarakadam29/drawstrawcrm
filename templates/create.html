@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}New Ticket - SupportDesk CRM{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+        <a href="/" class="text-text-secondary hover:text-text-primary text-sm flex items-center gap-1 mb-4 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            Back to tickets
+        </a>
+        <h1 class="text-2xl font-bold tracking-tight">Create New Ticket</h1>
+        <p class="text-text-secondary text-sm mt-1">Fill in the details below to log a new customer issue</p>
+    </div>
+
+    <!-- Form -->
+    <form id="create-ticket-form" class="bg-bg-surface border border-border-subtle rounded-lg p-6 space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Customer Name -->
+            <div class="space-y-2">
+                <label for="customer_name" class="block text-sm font-medium text-text-primary">Customer Name *</label>
+                <input 
+                    type="text" 
+                    id="customer_name" 
+                    name="customer_name"
+                    placeholder="John Doe"
+                    class="w-full bg-bg-primary border border-border-subtle rounded-md px-4 py-2.5 text-sm text-text-primary placeholder-text-secondary/50 transition-all"
+                >
+                <p class="error-message hidden text-red-400 text-xs mt-1" data-field="customer_name"></p>
+            </div>
+
+            <!-- Customer Email -->
+            <div class="space-y-2">
+                <label for="customer_email" class="block text-sm font-medium text-text-primary">Email Address *</label>
+                <input 
+                    type="email" 
+                    id="customer_email" 
+                    name="customer_email"
+                    placeholder="john@example.com"
+                    class="w-full bg-bg-primary border border-border-subtle rounded-md px-4 py-2.5 text-sm text-text-primary placeholder-text-secondary/50 transition-all"
+                >
+                <p class="error-message hidden text-red-400 text-xs mt-1" data-field="customer_email"></p>
+            </div>
+        </div>
+
+        <!-- Issue Title -->
+        <div class="space-y-2">
+            <label for="subject" class="block text-sm font-medium text-text-primary">Issue Title *</label>
+            <input 
+                type="text" 
+                id="subject" 
+                name="subject"
+                placeholder="Brief summary of the issue"
+                class="w-full bg-bg-primary border border-border-subtle rounded-md px-4 py-2.5 text-sm text-text-primary placeholder-text-secondary/50 transition-all"
+            >
+            <p class="error-message hidden text-red-400 text-xs mt-1" data-field="subject"></p>
+        </div>
+
+        <!-- Description -->
+        <div class="space-y-2">
+            <label for="description" class="block text-sm font-medium text-text-primary">Description *</label>
+            <textarea 
+                id="description" 
+                name="description"
+                rows="5"
+                placeholder="Detailed description of the customer issue..."
+                class="w-full bg-bg-primary border border-border-subtle rounded-md px-4 py-2.5 text-sm text-text-primary placeholder-text-secondary/50 transition-all resize-none"
+            ></textarea>
+            <p class="error-message hidden text-red-400 text-xs mt-1" data-field="description"></p>
+        </div>
+
+        <!-- Status (optional, defaults to Open) -->
+        <div class="space-y-2">
+            <label for="status" class="block text-sm font-medium text-text-primary">Initial Status</label>
+            <select id="status" name="status" class="w-full bg-bg-primary border border-border-subtle rounded-md px-4 py-2.5 text-sm text-text-primary cursor-pointer">
+                <option value="Open" selected>Open</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Closed">Closed</option>
+            </select>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center justify-end gap-3 pt-2">
+            <a href="/" class="px-5 py-2.5 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">
+                Cancel
+            </a>
+            <button type="submit" class="btn-primary text-white px-6 py-2.5 rounded-md text-sm font-medium flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                Create Ticket
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // Page-specific: handle create form
+    if (document.getElementById('create-ticket-form')) {
+        initCreateForm();
+    }
+</script>
+{% endblock %}
